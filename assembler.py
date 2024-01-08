@@ -1,5 +1,5 @@
-#asm = open(input("Assembly file -"), "r")
-asm = open("hello.s", "r")
+asm = open(input("Assembly file -"), "r")
+#asm = open("hello.s", "r")
 out = open("out.bin", "wb")
 
 code = asm.read().split("\n")
