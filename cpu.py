@@ -1,3 +1,4 @@
+# registers
 ro   = 0x00 
 rt   = 0x00
 rtt  = 0x00
@@ -19,13 +20,16 @@ def run(instruction):
         instruction = hld
         hld = 0xff
 
+    # Huge match/case ladder for running the code
     match instruction:
-        case 0x00:
+        # === Misc. Operations ===
+        case 0xea:
             # NOP
             # No operation. Pass and do nothing
             pass
 
-
+        
+        # === Register Operations ===
         case 0x10:
             # STRO
             # Store whatever is in RTT in RO.
@@ -49,7 +53,7 @@ def run(instruction):
                 hld = 0x11
             
         case 0x12:
-            # STRTT (please never use)
+            # STRTT
             # This is easier because we dont need to do anything to RTT
             if hld == 0xff:
                 hld = 0x00
@@ -57,7 +61,7 @@ def run(instruction):
                 hld = 0x12
 
 
-                
+        # === Arithmetic Operations ===
         case 0x20:
             # ADD
             # Adds ro and rt and store it in ro
@@ -65,10 +69,21 @@ def run(instruction):
 
         case 0x21:
             # SUB
-            # Subtracts ro and rt and stores it in ro
+            # Subtracts ro and rt and store it in ro
             ro = ro - rt
 
+        case 0x22:
+            # MUL
+            # Multiplies ro and rt and store it in ro
+            ro = ro * rt
+
+        case 0x23:
+            # DIV
+            # Divides ro and rt and store it in ro
+            ro = ro / rt
         
+
+        # === I/O Operations ===
         case 0x30:
             #PRN
             # Print RO's character
@@ -80,31 +95,13 @@ def run(instruction):
 
 
 
+code = []
 
-code = [
-    0x10, 0xaa, #STRO  0xAA
-    0x11, 0xbb, #STRT  0xBB
-    0x12, 0xf0, #STRTT 0xF0
-    0x20,       #ADD
-    0x30,       #PRN
-    0x11, 0xbb, #STRT  0xBB
-    0x21,       #SUB
-    0x30,       #PRN
+with open("out.bin", "rb") as file:
+    hex_string = file.read()
 
-    #run hello world
-    0x10, 0x48, #STRO  0x48 
-    0x30,       #PRN
-    0x10, 0x65, #STRO  0x65
-    0x30,       #PRN
-    0x10, 0x6c, #STRO  0x6c
-    0x30,       #PRN
-    0x10, 0x6c, #STRO  0x6c
-    0x30,       #PRN
-    0x10, 0x6f, #STRO  0x6f
-    0x30,       #PRN
-]
+code = [byte for byte in hex_string]
 
 for i in code:
     run(i)
-
     #print("     REGISTERS: " + str(ro)+" "+ str(rt)+" "+str(rtt)+" "+str(hld))
