@@ -4,12 +4,17 @@ rt   = 0x00
 rtt  = 0x00
 hld  = 0x00
 
+# memory
+RAM = []
+for i in range(0xff): RAM.append(0x00)
+
 def run(instruction):
     # get access to registers
     global ro
     global rt
     global rtt
     global hld
+    global RAM
 
     # was hold changed?
     if hld != 0x00:
@@ -60,6 +65,10 @@ def run(instruction):
             else:
                 hld = 0x12
 
+        case 0x13:
+            # MVRO
+            ro = rt
+
 
         # === Arithmetic Operations ===
         case 0x20:
@@ -89,6 +98,17 @@ def run(instruction):
             # Print RO's character
             print(chr(ro), end="")
 
+        case 0x31:
+            #WMEM
+            # Write to memory
+            RAM[ro] = rt
+
+        case 0x32:
+            #RMEM
+            # Read from memory
+            rt = RAM[ro]
+
+
         case _:
             # Nothing matched, do nothing
             pass
@@ -104,4 +124,9 @@ code = [byte for byte in hex_string]
 
 for i in code:
     run(i)
+    #print(RAM)
     #print("     REGISTERS: " + str(ro)+" "+ str(rt)+" "+str(rtt)+" "+str(hld))
+
+with open("memdump.bin", "wb") as out:
+    for i in RAM:
+        out.write(i.to_bytes(1, "big"))

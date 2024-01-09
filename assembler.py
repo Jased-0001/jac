@@ -21,6 +21,7 @@ for i in range(len(code)):
     code[i] = code[i].replace("stro", "0x10")
     code[i] = code[i].replace("strtt", "0x12")
     code[i] = code[i].replace("strt", "0x11")
+    code[i] = code[i].replace("mvro", "0x13")
 
     code[i] = code[i].replace("add", "0x20")
     code[i] = code[i].replace("sub", "0x21")
@@ -28,6 +29,8 @@ for i in range(len(code)):
     code[i] = code[i].replace("div", "0x23")
 
     code[i] = code[i].replace("prn", "0x30")
+    code[i] = code[i].replace("wmem", "0x31")
+    code[i] = code[i].replace("rmem", "0x32")
 
     code[i] = code[i].replace("nop", "0xea")
 

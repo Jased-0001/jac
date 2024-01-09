@@ -13,6 +13,10 @@ Takes two cycles
 Stores following data in the RTT register
 Takes two cycles
 
+0x13 - MVRO
+Moves RT into RO
+Takes 1 cycle
+
 
 
 === Arithmetic Operations (0x2-) ===
@@ -37,6 +41,18 @@ Takes one cycle
 === I/O Operations (0x3-) ===
 0x30 - PRN
 Prints ro
+Takes one cycle
+
+0x31 - WMEM
+Write to memory
+Address to write to will be RO
+Data to write will be in RT
+Takes one cycle
+
+0x32 - RMEM
+Read from memory
+Address to write to will be RO
+Data will be returned in RT
 Takes one cycle
 
 

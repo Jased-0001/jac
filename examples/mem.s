@@ -1,0 +1,23 @@
+; mem.s
+; Used in the Jase CPU
+; ====================
+
+STRO 0x00
+STRT 0x48
+WMEM
+
+STRO 0x01
+STRT 0x65
+WMEM
+
+STRO 0x02
+STRT 0x6c
+WMEM
+
+STRO 0x03
+STRT 0x6c
+WMEM
+
+STRO 0x04
+STRT 0x6f
+WMEM
