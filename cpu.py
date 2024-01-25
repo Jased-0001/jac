@@ -1,3 +1,5 @@
+import keyboard
+
 # registers
 ro   = 0x00 
 rt   = 0x00
@@ -101,6 +103,9 @@ def run(instruction):
                 match rtt:
                     case 0x10:
                         print(chr(ro), end="")
+
+                    case 0x11:
+                        ro = ord(keyboard.read_key())
                     
                     case _:
                         print("CPU Exception: invalid interrupt "+str(rtt), end="")
@@ -120,8 +125,9 @@ def run(instruction):
 
 
         case _:
-            # Nothing matched, do nothing
-            pass
+            # Nothing matched
+            print("CPU Exception: invalid instruction "+str(instruction))
+
 
 
 

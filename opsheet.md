@@ -67,3 +67,6 @@ Takes one cycle
 === Interrupts ===
 0x10 - PRN
 Print ro
+
+0x11 - IN
+Get one character in and put it in ro
