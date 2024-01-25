@@ -39,9 +39,9 @@ Takes one cycle
 
 
 === I/O Operations (0x3-) ===
-0x30 - PRN
-Prints ro
-Takes one cycle
+0x30 - INT
+Interrupt
+Variable cycles
 
 0x31 - WMEM
 Write to memory
@@ -61,3 +61,9 @@ Takes one cycle
 0xea - NOP
 No operation
 Takes one cycle
+
+
+
+=== Interrupts ===
+0x10 - PRN
+Print ro

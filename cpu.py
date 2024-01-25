@@ -94,9 +94,19 @@ def run(instruction):
 
         # === I/O Operations ===
         case 0x30:
-            #PRN
-            # Print RO's character
-            print(chr(ro), end="")
+            #INT
+            # Interrupt
+            
+            if hld == 0xff:
+                match rtt:
+                    case 0x10:
+                        print(chr(ro), end="")
+                    
+                    case _:
+                        print("CPU Exception: invalid interrupt "+str(rtt), end="")
+                hld = 0x00
+            else:
+                hld = 0x30
 
         case 0x31:
             #WMEM

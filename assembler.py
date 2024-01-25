@@ -28,7 +28,7 @@ for i in range(len(code)):
     code[i] = code[i].replace("mul", "0x22")
     code[i] = code[i].replace("div", "0x23")
 
-    code[i] = code[i].replace("prn", "0x30")
+    code[i] = code[i].replace("int", "0x30")
     code[i] = code[i].replace("wmem", "0x31")
     code[i] = code[i].replace("rmem", "0x32")
 

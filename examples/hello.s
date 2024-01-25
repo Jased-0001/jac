@@ -3,12 +3,12 @@
 ; ====================
 
 STRO  0x48 ; H
-PRN
+INT 0x10
 STRO  0x65 ; He
-PRN
+INT 0x10
 STRO  0x6c ; Hel
-PRN
+INT 0x10
 STRO  0x6c ; Hell
-PRN
+INT 0x10
 STRO  0x6f ; Hello
-PRN
+INT 0x10
