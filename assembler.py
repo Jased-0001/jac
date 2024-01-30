@@ -1,4 +1,8 @@
-asm = open(input("Assembly file -"), "r")
+import sys
+
+args = sys.argv
+
+asm = open(args[1],  "r")
 #asm = open("hello.s", "r")
 out = open("out.bin", "wb")
 
